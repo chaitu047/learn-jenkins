@@ -1,4 +1,7 @@
-pipeline{
+pipeline {
+    agent{
+        label: None
+    }
     stages{
         stage("A"){
             steps{
