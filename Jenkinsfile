@@ -1,7 +1,4 @@
 pipeline{
-    agent{
-        None
-    }
     stages{
         stage("A"){
             steps{
