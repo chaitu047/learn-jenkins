@@ -28,9 +28,9 @@ pipeline {
         }
         stage("shell"){
             steps{
-                
+
                 sh """
-                    env
+                    echo "$env.Greeting"
                 """
             }
         }
