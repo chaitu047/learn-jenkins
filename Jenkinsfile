@@ -6,6 +6,10 @@ pipeline {
         }
     }
 
+    environment {
+        Greeting = 'Hello World'
+    }
+
     stages{
         stage("Build"){
             steps{
@@ -22,6 +26,13 @@ pipeline {
                 echo "====Deploy===="
             }
         }
+        stage("shell")[
+            steps{
+                sh """
+                    env
+                """
+            }
+        ]
     }
     post{
         always{
