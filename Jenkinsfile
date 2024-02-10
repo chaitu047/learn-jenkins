@@ -26,13 +26,14 @@ pipeline {
                 echo "====Deploy===="
             }
         }
-        stage("shell")[
+        stage("shell"){
             steps{
+                
                 sh """
                     env
                 """
             }
-        ]
+        }
     }
     post{
         always{
