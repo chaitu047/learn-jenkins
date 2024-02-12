@@ -4,6 +4,7 @@ resource "aws_instance" "JenkinsSlave" {
   availability_zone      = "us-east-1b"
   vpc_security_group_ids = [data.aws_security_group.allowall.id]
   key_name               = "dev-ssh"
+  iam_instance_profile = "AWSTerraformRole"
   root_block_device {
     delete_on_termination = true
     volume_size           = 20
