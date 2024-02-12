@@ -11,3 +11,15 @@ logger() {
 sudo yum install fontconfig java-17-openjdk -y
 
 logger $?
+
+sudo yum install yum-utils -y
+
+logger $?
+
+sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
+
+logger $?
+
+sudo yum install terraform -y
+
+logger $?

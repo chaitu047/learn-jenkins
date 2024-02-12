@@ -1,0 +1,55 @@
+pipeline {
+
+    agent {
+        node {
+            label 'AGENT-1'
+        }
+    }
+
+    options {
+        timeout(time: 1, unit: 'HOURS')
+        disableConcurrentBuilds()
+    }
+
+    stages{
+        stage("init"){
+            steps{
+                sh """
+                    cd aws_vpc
+                    terraform init -reconfigure
+                """
+            }
+        }
+        stage("plan"){
+            steps{
+                sh """
+                    cd aws_vpc
+                    terraform plan
+                """
+            }
+        }
+        stage("apply"){
+            inputs {
+                message 'Should we continue?'
+                ok 'yes, we should'
+            }
+            steps{
+                sh """
+                    cd aws_vpc
+                    terraform apply -auto-approve
+                """
+            }
+        }
+    }
+    post{
+        always{
+            echo "========always========"
+        }
+        success{
+            echo "========pipeline executed successfully ========"
+        }
+        failure{
+            echo "========pipeline execution failed========"
+        }
+    }
+}
