@@ -3,6 +3,7 @@ resource "aws_instance" "JenkinsMaster" {
   instance_type          = "t3.small"
   availability_zone      = "us-east-1b"
   vpc_security_group_ids = [data.aws_security_group.allowall.id]
+  key_name               = "dev-ssh"
   root_block_device {
     delete_on_termination = true
     volume_size           = 30
