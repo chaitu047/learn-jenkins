@@ -29,11 +29,11 @@ pipeline {
             }
         }
         stage("apply"){
-            inputs {
+            input {
                 message 'Should we continue?'
                 ok 'yes, we should'
             }
-            steps{
+            steps {
                 sh """
                     cd aws_vpc
                     terraform apply -auto-approve
@@ -41,11 +41,11 @@ pipeline {
             }
         }
         stage("destroy"){
-            inputs {
+            input {
                 message 'Should we continue?'
                 ok 'yes, we should'
             }
-            steps{
+            steps {
                 sh """
                     cd aws_vpc
                     terraform destroy -auto-approve
