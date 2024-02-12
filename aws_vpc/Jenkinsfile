@@ -9,9 +9,17 @@ pipeline {
     options {
         timeout(time: 1, unit: 'HOURS')
         disableConcurrentBuilds()
+        ansiColor('xterm')
+    }
+
+    parameters {
+
+        string(name: 'Action', defaultValue: '', description: 'Perform Terraform apply?')
+
     }
 
     stages{
+
         stage("init"){
             steps{
                 sh """
@@ -20,6 +28,7 @@ pipeline {
                 """
             }
         }
+
         stage("plan"){
             steps{
                 sh """
@@ -29,9 +38,10 @@ pipeline {
             }
         }
         stage("apply"){
-            input {
-                message 'Should we continue?'
-                ok 'yes, we should'
+            when {
+                expression {
+                    params.Action == 'apply'
+                }
             }
             steps {
                 sh """
@@ -41,11 +51,9 @@ pipeline {
             }
         }
         stage("destroy"){
-            input {
-                message 'Should we continue?'
-                ok 'yes, we should'
-            }
+            
             steps {
+                sleep 300
                 sh """
                     cd aws_vpc
                     terraform destroy -auto-approve
