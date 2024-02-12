@@ -40,6 +40,18 @@ pipeline {
                 """
             }
         }
+        stage("destroy"){
+            inputs {
+                message 'Should we continue?'
+                ok 'yes, we should'
+            }
+            steps{
+                sh """
+                    cd aws_vpc
+                    terraform destroy -auto-approve
+                """
+            }
+        }
     }
     post{
         always{
