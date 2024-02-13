@@ -20,16 +20,11 @@ pipeline {
 
         stage("Get Version"){
             steps{
-
-                node('AGENT-1') {
-
-                    script {
+                script {
                     def packageJson = readJSON file: "catalogue/package.json"
                     packageVersion = packageJson.version
                     echo "application version: $packageVersion"
-                    }
                 }
-                
             }
         }
 
