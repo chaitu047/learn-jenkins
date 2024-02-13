@@ -28,6 +28,15 @@ pipeline {
             }
         }
 
+        stage("Build") {
+            steps {
+                sh """
+                    cd catalogue
+                    npm install
+                """
+            }
+        }
+
         stage("Test"){
 
             steps{
