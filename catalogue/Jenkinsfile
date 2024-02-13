@@ -22,9 +22,9 @@ pipeline {
             steps{
 
                 node('AGENT-1') {
-                    
+
                     script {
-                    def packageJson = readJSON file: "package.json"
+                    def packageJson = readJSON file: "catalogue/package.json"
                     packageVersion = packageJson.version
                     echo "application version: $packageVersion"
                     }
