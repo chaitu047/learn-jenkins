@@ -42,7 +42,6 @@ pipeline {
                 sh """
                 cd catalogue
                 zip -q -r catalogue.zip ./* -x ".git" -x "catalogue.zip"
-                mv catalogue.zip /home/centos/catalogue.zip
                 """
             }
         }

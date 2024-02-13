@@ -23,3 +23,11 @@ logger $?
 sudo yum install terraform -y
 
 logger $?
+
+dnf module disable nodejs -y
+
+logger $?
+
+dnf module enable nodejs:18 -y
+
+dnf install nodejs -y
