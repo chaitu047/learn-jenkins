@@ -16,7 +16,7 @@ pipeline {
         ansiColor('xterm')
     }
 
-    stages{
+    stages {
 
         stage("Get Version"){
             steps{
